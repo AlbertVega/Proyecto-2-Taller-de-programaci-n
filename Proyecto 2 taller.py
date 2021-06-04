@@ -1,4 +1,4 @@
-import pygame 
+import pygame , random
 pygame.init()
 #pygame.mixer.init() #PARA AGREGAR EL SONIDO 
 
@@ -12,26 +12,26 @@ BLUE= (0,0,255)
 
 
 #TAMAÑO DE LA VENTANA
-WIDTH= 626
-HEIGHT= 417
+WIDTH= 850
+HEIGHT= 638
 #CREAR UNA VENTANA
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 clock= pygame.time.Clock()
 
 #SE COLOCA EL NOMBRE DE JUEGO Y EL ICONO EN LA VENTANA
 pygame.display.set_caption("The Fish Adventure")
-icon = pygame.image.load("Jugador.png")
+icon = pygame.image.load("PNG/Jugador1.png")
 pygame.display.set_icon(icon)
 
 #AGREGAR MUSICA DE FONDO
-pygame.mixer.music.load("Music.mp3")
+pygame.mixer.music.load("PNG/Music.mp3")
 pygame.mixer.music.play(1)
 
 
 class Jugador(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("Jugador1.png").convert()   #AGREGAR LA IMAGEN
+        self.image = pygame.image.load("PNG/Jugador1.png").convert()   #AGREGAR LA IMAGEN
         self.image.set_colorkey(BLACK)   #SE ELIMINA EL COLOR DE FONDO
         self.rect = self.image.get_rect()  #POSICIONAR EL SPRITE
         self.rect.centerx = WIDTH // 2     #MOSTRARLA EN PANTALLA
@@ -62,7 +62,6 @@ class Jugador(pygame.sprite.Sprite):
             self.rect.left = 0
 
         #LIMITA EL MARGEN INFERIOR Y SUPERIOR
-        
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
         if self.rect.top < 0:
@@ -72,15 +71,34 @@ class Jugador(pygame.sprite.Sprite):
 class Tiburon1(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("tiburon11.png").convert()   #AGREGAR LA IMAGEN
+        self.image = pygame.image.load("PNG/tiburon11.png").convert()   #AGREGAR LA IMAGEN
         self.image.set_colorkey(BLACK)   #SE ELIMINA EL COLOR DE FONDO
         self.rect = self.image.get_rect()  #POSICIONAR EL SPRITE
-        self.rect.centerx = WIDTH // 2     #MOSTRARLA EN PANTALLA
-        self.rect.bottom = HEIGHT - 150
-        self.speed_x = 0 #VELOCIDAD CON LA QUE SE MOVERA 
-        self.speed_y = 0
+        self.rect.x = random.randrange(WIDTH-self.rect.width) #VELOCIDAD CON LA QUE SE MOVERA 
+        self.rect.y = random.randrange(HEIGHT-self.rect.height)
+        self.speed_x = random.randrange(1,4)   #VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
+        self.speed_y = random.randrange(1,4)
+    
+    def update(self):
+        #ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
+        self.rect.x += self.speed_x
+        self.rect.y += self.speed_y
+        
+        #LIMITA EL MARGEN DERECHO E IZQUIERDO
+        if self.rect.right > WIDTH:
+            self.speed_x -=1  #PARA QUE REBOTE
+        if self.rect.left < 0:
+            self.speed_x +=1
+
+        #LIMITA EL MARGEN INFERIOR Y SUPERIOR
+        if self.rect.bottom > HEIGHT:
+            self.speed_y -=1
+        if self.rect.top < 0:
+            self.speed_y +=1
 
 
+
+'''
 class Tiburon2(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -91,12 +109,19 @@ class Tiburon2(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT - 100
         self.speed_x = 0 #VELOCIDAD CON LA QUE SE MOVERA 
         self.speed_y = 0
-
-
-
+ '''   
+        
 
 
 all_sprites= pygame.sprite.Group()  #ALMACENAR AL JUGADOR
+
+#CANTIDAD DE TIBURONES AL AZAR
+for i in range(random.randrange(5)+1):
+    tiburon1= Tiburon1()
+    all_sprites.add(tiburon1)
+
+
+
 
 pez=Jugador()
 all_sprites.add(pez)
@@ -104,15 +129,16 @@ all_sprites.add(pez)
 tiburon1=Tiburon1()
 all_sprites.add(tiburon1)
 
+'''
 tiburon2=Tiburon2()
 all_sprites.add(tiburon2)
-
+'''
 
 
 done=False
 
 #PARA COLOCAR UNA IMAGEN DE FONDO
-fondo = pygame.image.load("fondo.jpg").convert()
+fondo = pygame.image.load("PNG/fondo2.jpg").convert()
 
 #PARA PODER CERRAR LA VENTANA AL PRESIONAR LA "X"
 while not done:
