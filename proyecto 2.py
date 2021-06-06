@@ -1,3 +1,4 @@
+
 from tkinter import *
 import pygame, random
 import time
@@ -30,6 +31,13 @@ def StartingWindow():
     text_box = Entry(window, textvariable = entry, font = ("Ebrima",18))
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
+    # ADD MUSIC 
+    pygame.mixer.init() 
+    pygame.init()
+    pygame.mixer.music.load("PNG/Intro.mp3")
+    pygame.mixer.music.play(1)
+    
+
     #------------------------------------------------------------------------------------------------------
     # GAME WINDOWS
     #------------------------------------------------------------------------------------------------------
@@ -43,7 +51,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        #pygame.mixer.init() 
+        pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -64,8 +72,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        #pygame.mixer.music.load("PNG/Music.mp3")
-        #pygame.mixer.music.play(1)
+        pygame.mixer.music.load("PNG/Lebel 1.mp3")
+        pygame.mixer.music.play(1)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -304,7 +312,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        #pygame.mixer.init() 
+        pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -325,8 +333,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        #pygame.mixer.music.load("PNG/Music.mp3")
-        #pygame.mixer.music.play(1)
+        pygame.mixer.music.load("PNG/Lebel 2.mp3")
+        pygame.mixer.music.play(1)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -572,7 +580,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        #pygame.mixer.init() 
+        pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -591,8 +599,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        #pygame.mixer.music.load("PNG/Music.mp3")
-        #pygame.mixer.music.play(1)
+        pygame.mixer.music.load("PNG/Lebel 3.mp3")
+        pygame.mixer.music.play(2)
 
 
         class Jugador(pygame.sprite.Sprite):
@@ -795,7 +803,7 @@ def StartingWindow():
         Country.place(x = 390, y = 50)
 
         # UNIVERSITY LABEL
-        University = Label(Aboutwindow, text = "instituto Tecnológico de Costa Rica (TEC)", font = ("Ebrima",20))
+        University = Label(Aboutwindow, text = "Instituto Tecnológico de Costa Rica (TEC)", font = ("Ebrima",20))
         University.place(x = 210, y = 120)
 
         # CARRER LABEL
