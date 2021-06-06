@@ -43,7 +43,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        pygame.mixer.init() 
+        #pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -64,8 +64,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        pygame.mixer.music.load("PNG/Music.mp3")
-        pygame.mixer.music.play(1)
+        #pygame.mixer.music.load("PNG/Music.mp3")
+        #pygame.mixer.music.play(1)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -304,7 +304,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        pygame.mixer.init() 
+        #pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -325,8 +325,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        pygame.mixer.music.load("PNG/Music.mp3")
-        pygame.mixer.music.play(1)
+        #pygame.mixer.music.load("PNG/Music.mp3")
+        #pygame.mixer.music.play(1)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -572,7 +572,7 @@ def StartingWindow():
 
         # OPEN THE GAME WINDOW 
         pygame.init()
-        pygame.mixer.init() 
+        #pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
@@ -591,8 +591,8 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
-        pygame.mixer.music.load("PNG/Music.mp3")
-        pygame.mixer.music.play(1)
+        #pygame.mixer.music.load("PNG/Music.mp3")
+        #pygame.mixer.music.play(1)
 
 
         class Jugador(pygame.sprite.Sprite):
