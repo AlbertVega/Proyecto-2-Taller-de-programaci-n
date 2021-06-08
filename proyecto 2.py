@@ -3,6 +3,7 @@ from tkinter import *
 import pygame, random
 import time
 
+
 def StartingWindow():
     #------------------------------------------------------------------------------------------------------
     # STARTING WINDOW
@@ -32,8 +33,8 @@ def StartingWindow():
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
     # ADD MUSIC 
-    pygame.mixer.init() 
     pygame.init()
+    pygame.mixer.init() 
     pygame.mixer.music.load("PNG/Intro.mp3")
     pygame.mixer.music.play(1)
     
