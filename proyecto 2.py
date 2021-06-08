@@ -835,6 +835,7 @@ def StartingWindow():
 
         mainloop()
 
+
     # ABOUT BUTTON
     AboutButton = Button(window, text = "About", command = AboutWindow, font = ("Ebrima 15"))
     AboutButton.place(x = 100, y = 315)
