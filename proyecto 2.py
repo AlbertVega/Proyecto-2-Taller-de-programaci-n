@@ -4,10 +4,12 @@ import pygame, random
 import time
 
 
+
 def StartingWindow():
     #------------------------------------------------------------------------------------------------------
     # STARTING WINDOW
     #------------------------------------------------------------------------------------------------------
+
     window = Tk()
     window.title("The Fish Adventure")
 
@@ -33,10 +35,7 @@ def StartingWindow():
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
     # ADD MUSIC 
-    pygame.init()
-    pygame.mixer.init() 
-    pygame.mixer.music.load("PNG/Intro.mp3")
-    pygame.mixer.music.play(1)
+    
     
 
     #------------------------------------------------------------------------------------------------------
@@ -53,7 +52,7 @@ def StartingWindow():
         # OPEN THE GAME WINDOW 
         pygame.init()
         pygame.mixer.init() 
-
+        
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
         HEIGHT= 700
@@ -73,6 +72,7 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
+
         pygame.mixer.music.load("PNG/Lebel 1.mp3")
         pygame.mixer.music.play(1)
 
