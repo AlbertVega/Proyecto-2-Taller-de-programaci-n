@@ -77,8 +77,8 @@ def StartingWindow():
 
         #AGREGAR MUSICA DE FONDO
 
-        #pygame.mixer.music.load("PNG/Lebel 1.mp3")
-        #pygame.mixer.music.play(1)
+        pygame.mixer.music.load("PNG/Lebel 1.mp3")
+        pygame.mixer.music.play(1)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -289,7 +289,7 @@ def StartingWindow():
                 pygame.quit()
                 StartingWindow()
 
-            if int(actual_time) == 10:
+            if int(actual_time) == 20:
                 Level2()
 
             #PARA QUE SALGAN EN PANTALLA
