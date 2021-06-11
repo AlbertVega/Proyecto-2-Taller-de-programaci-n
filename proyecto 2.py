@@ -1,4 +1,5 @@
 
+from os import name
 from tkinter import *
 import pygame, random
 import time
@@ -31,36 +32,35 @@ def StartingWindow():
     text_box = Entry(window, textvariable = entry, font = ("Ebrima",18))
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
-    # ADD MUSIC 
-    pygame.mixer.init() 
-    pygame.init()
-    pygame.mixer.music.load("PNG/Intro.mp3")
-    pygame.mixer.music.play(1)
     
-
+    
+    
+    global playername
+    playername = str(text_box.get())
     #------------------------------------------------------------------------------------------------------
     # GAME WINDOWS
     #------------------------------------------------------------------------------------------------------
     def Level1():
 
         # GET THE NAME INTRODUCED
-        Playername = text_box.get()
-
+        
+        name = playername
         # CLOSE THE STARTING WINDOW
         window.destroy()
+        Tk.quit
 
         # OPEN THE GAME WINDOW 
         pygame.init()
         pygame.mixer.init() 
 
         #TAMAÑO DE LA VENTANA
-        WIDTH= 900
-        HEIGHT= 700
+        WIDTH = 900
+        HEIGHT = 700
 
         WHITE = (0,0,0)
 
         #CREAR UNA VENTANA
-        screen=pygame.display.set_mode((WIDTH,HEIGHT))
+        screen= pygame.display.set_mode((WIDTH,HEIGHT))
         clock= pygame.time.Clock()
 
         #SE COLOCA EL NOMBRE DE JUEGO Y EL ICONO EN LA VENTANA
@@ -280,7 +280,7 @@ def StartingWindow():
                 pygame.quit()
                 StartingWindow()
 
-            if int(Time) == 60:
+            if int(Time) == 10:
                 Level2()
 
             #PARA QUE SALGAN EN PANTALLA
@@ -297,18 +297,19 @@ def StartingWindow():
             draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
-            PlayerName(screen,Playername,25, 750, 650)
+            PlayerName(screen,name,25, 750, 650)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
             
 
-        pygame.quit()
-
+        
+    
     def Level2():
 
         # GET THE NAME INTRODUCED
-        Playername2 = text_box.get() 
+        playername = name
+        
 
         # OPEN THE GAME WINDOW 
         pygame.init()
@@ -562,7 +563,7 @@ def StartingWindow():
             draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
-            PlayerName(screen,Playername2,25, 750, 650)
+            PlayerName(screen,playername,25, 750, 650)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
