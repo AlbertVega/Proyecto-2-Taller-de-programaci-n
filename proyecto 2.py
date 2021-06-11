@@ -1,3 +1,4 @@
+
 from tkinter import *
 import pygame, random
 import time
@@ -36,7 +37,13 @@ def StartingWindow():
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
     # ADD MUSIC 
-                   
+    pygame.mixer.init() 
+    pygame.mixer.music.load("PNG/Intro.mp3")
+    pygame.mixer.music.play(1)
+    pygame.mixer.music.set_volume(0.5)
+
+
+                  
     #-------------------------------------------------------------------
     #                        LEVEL 1
     #-------------------------------------------------------------------
@@ -78,6 +85,8 @@ def StartingWindow():
 
         pygame.mixer.music.load("PNG/Lebel 1.mp3")
         pygame.mixer.music.play(1)
+        pygame.mixer.music.set_volume(0.4)
+
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -186,14 +195,25 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
+   
+
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
+
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
 
         class Tiburon2(pygame.sprite.Sprite):
@@ -217,15 +237,24 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
+
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
         #ALMACENAR AL JUGADOR
         all_sprites= pygame.sprite.Group()
@@ -281,6 +310,7 @@ def StartingWindow():
 
             if collides:
                 PlayerLife -= 1
+                
 
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
@@ -355,6 +385,7 @@ def StartingWindow():
         #AGREGAR MUSICA DE FONDO
         pygame.mixer.music.load("PNG/Lebel 2.mp3")
         pygame.mixer.music.play(1)
+        pygame.mixer.music.set_volume(0.5)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -462,14 +493,22 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
 
         class Tiburon2(pygame.sprite.Sprite):
@@ -493,14 +532,22 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
         #ALMACENAR AL JUGADOR
         all_sprites= pygame.sprite.Group()
@@ -636,7 +683,8 @@ def StartingWindow():
 
         #AGREGAR MUSICA DE FONDO
         pygame.mixer.music.load("PNG/Lebel 3.mp3")
-        pygame.mixer.music.play(2)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.5)
 
         #------------------------------------------------------------------------------------------------------
         # DRAW ELEMENTS ON WINDOW
@@ -744,14 +792,22 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
 
         class Tiburon2(pygame.sprite.Sprite):
@@ -774,15 +830,24 @@ def StartingWindow():
                 
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
-                    self.speed_x -=1  #PARA QUE REBOTE
+                    self.speed_x -=1 #PARA QUE REBOTE   
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
+
                 if self.rect.left < 0:
                     self.speed_x +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
+                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    golpe.play()
 
         #ALMACENAR AL JUGADOR
         all_sprites= pygame.sprite.Group()  
