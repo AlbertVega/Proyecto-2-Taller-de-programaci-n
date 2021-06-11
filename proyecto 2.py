@@ -180,12 +180,12 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon11.png").convert_alpha()   
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,4)   
+                self.speed_x = random.randrange(1,4)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(2,4)
+                self.speed_y = random.randrange(1,4)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -222,12 +222,12 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon2.png").convert_alpha()   #AGREGAR LA IMAGEN
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,4)   
+                self.speed_x = random.randrange(-2,5)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(2,4)
+                self.speed_y = random.randrange(-2,5)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -272,6 +272,9 @@ def StartingWindow():
 
         tiburon3=Tiburon1()
         enemies_sprites.add(tiburon3)
+
+        tiburon4=Tiburon2()
+        enemies_sprites.add(tiburon4)
 
         # TIME TRANSCURRED
         Time = 0
@@ -478,10 +481,10 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon11.png").convert_alpha()   
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,3)   
+                self.speed_x = random.randrange(-4,4)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
                 self.speed_y = random.randrange(2,3)
             
@@ -517,12 +520,12 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon2.png").convert_alpha()   #AGREGAR LA IMAGEN
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,3)   
+                self.speed_x = random.randrange(-5,5)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(2,3)
+                self.speed_y = random.randrange(1,5)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -566,7 +569,7 @@ def StartingWindow():
         tiburon3=Tiburon1()
         enemies_sprites.add(tiburon3)
 
-        tiburon4=Tiburon1()
+        tiburon4=Tiburon2()
         enemies_sprites.add(tiburon4)
 
         tiburon5=Tiburon1()
@@ -777,12 +780,12 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon11.png").convert_alpha()   
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,3)   
+                self.speed_x = random.randrange(-1,3)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(2,3)
+                self.speed_y = random.randrange(3,5)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -816,12 +819,12 @@ def StartingWindow():
                 self.image = pygame.image.load("PNG/tiburon2.png").convert_alpha()   #AGREGAR LA IMAGEN
                 self.rect = self.image.get_rect()  
                 # POSICIONAR EL SPRITE
-                self.rect.x = random.randrange(WIDTH) 
+                self.rect.x = random.randrange(WIDTH-self.rect.width) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(2,3)   
+                self.speed_x = random.randrange(-1,5)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(2,3)
+                self.speed_y = random.randrange(1,3)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
