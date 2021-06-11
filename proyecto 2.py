@@ -4,10 +4,15 @@ from tkinter import *
 import pygame, random
 import time
 
+#GLOBAL VARIABLE
+Playername = None
+
+
 def StartingWindow():
     #------------------------------------------------------------------------------------------------------
     # STARTING WINDOW
     #------------------------------------------------------------------------------------------------------
+
     window = Tk()
     window.title("The Fish Adventure")
 
@@ -32,19 +37,20 @@ def StartingWindow():
     text_box = Entry(window, textvariable = entry, font = ("Ebrima",18))
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
+    # ADD MUSIC 
     
     
-    
-    global playername
-    playername = str(text_box.get())
-    #------------------------------------------------------------------------------------------------------
-    # GAME WINDOWS
-    #------------------------------------------------------------------------------------------------------
+                       
+    #-------------------------------------------------------------------
+    #                        LEVEL 1
+    #-------------------------------------------------------------------
+                           
     def Level1():
+        global Playername
 
         # GET THE NAME INTRODUCED
         
-        name = playername
+        
         # CLOSE THE STARTING WINDOW
         window.destroy()
         Tk.quit
@@ -52,7 +58,7 @@ def StartingWindow():
         # OPEN THE GAME WINDOW 
         pygame.init()
         pygame.mixer.init() 
-
+        
         #TAMAÑO DE LA VENTANA
         WIDTH = 900
         HEIGHT = 700
@@ -72,6 +78,7 @@ def StartingWindow():
         fondo = pygame.image.load("PNG/Game Background.png").convert_alpha()
 
         #AGREGAR MUSICA DE FONDO
+
         pygame.mixer.music.load("PNG/Lebel 1.mp3")
         pygame.mixer.music.play(1)
 
@@ -250,9 +257,13 @@ def StartingWindow():
         #PARA PODER CERRAR LA VENTANA AL PRESIONAR LA "X"
         done = True
 
+        start_time = time.time()
+
         while done:
-            Time = pygame.time.get_ticks()/1000
-            Punctuation = Time
+            # Time = pygame.time.get_ticks()/1000
+            actual_time = time.time() - start_time
+
+            Punctuation = actual_time
             clock.tick(60)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
@@ -280,7 +291,7 @@ def StartingWindow():
                 pygame.quit()
                 StartingWindow()
 
-            if int(Time) == 10:
+            if int(actual_time) == 20:
                 Level2()
 
             #PARA QUE SALGAN EN PANTALLA
@@ -291,7 +302,7 @@ def StartingWindow():
             draw_punctuation(screen, "Puntuación: {}".format(str(int(Punctuation))), 25, 100, 650)
 
             # DRAW THE TIME ON THE SCREEN
-            draw_time(screen, "Tiempo: {}".format(str(int(Time))),25, 300, 650)
+            draw_time(screen, "Tiempo: {}".format(str(int(actual_time))),25, 300, 650)
 
             # DRAW THE PLAYER'S LIFE SCORE ON THE SCREEN
             draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
@@ -303,13 +314,18 @@ def StartingWindow():
             pygame.display.flip()
             
 
-        
-    
+        pygame.quit()
+
+#---------------------------------------------------
+#                  LEVEL 2
+#--------------------------------------------------
+
     def Level2():
+        global Playername
 
         # GET THE NAME INTRODUCED
-        playername = name
-        
+        if Playername is None:
+            Playername = text_box.get() 
 
         # OPEN THE GAME WINDOW 
         pygame.init()
@@ -505,6 +521,7 @@ def StartingWindow():
 
         tiburon5=Tiburon1()
         enemies_sprites.add(tiburon5)
+
         # TIME TRANSCURRED
         Time = 0
         # PUNCTUATION
@@ -515,10 +532,14 @@ def StartingWindow():
         #PARA PODER CERRAR LA VENTANA AL PRESIONAR LA "X"
         done = True
 
+        start_time = time.time()
+
         while done:
-            Time = pygame.time.get_ticks()/1000
-            Punctuation = Time
+    
+            actual_time = time.time() - start_time
+            Punctuation = actual_time
             clock.tick(60)
+
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     done = False
@@ -545,8 +566,8 @@ def StartingWindow():
                 pygame.quit()
                 StartingWindow()
 
-            if int(Time) == 60:
-                pygame.quit()
+            if int(actual_time) == 10:
+            
                 Level3()
 
             #PARA QUE SALGAN EN PANTALLA
@@ -557,13 +578,13 @@ def StartingWindow():
             draw_punctuation(screen, "Puntuación: {}".format(str(int(Punctuation))), 25, 100, 650)
 
             # DRAW THE TIME ON THE SCREEN
-            draw_time(screen, "Tiempo: {}".format(str(int(Time))),25, 300, 650)
+            draw_time(screen, "Tiempo: {}".format(str(int(actual_time))),25, 300, 650)
 
             # DRAW THE PLAYER'S LIFE SCORE ON THE SCREEN
             draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
-            PlayerName(screen,playername,25, 750, 650)
+            PlayerName(screen,Playername,25, 750, 650)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
@@ -571,10 +592,18 @@ def StartingWindow():
 
         pygame.quit()
 
+
+#---------------------------------------------
+#               LEVEL 3
+#---------------------------------------------
+
     def Level3():
+        global Playername
+
        
         # GET THE NAME INTRODUCED
-        Playername = text_box.get()
+        if Playername is None:
+            Playername = text_box.get() 
 
         # CLOSE THE STARTING WINDOW
         window.destroy()
@@ -586,6 +615,7 @@ def StartingWindow():
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
         HEIGHT= 700
+        WHITE = (255,255,255)
 
         #CREAR UNA VENTANA
         screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -603,6 +633,39 @@ def StartingWindow():
         pygame.mixer.music.load("PNG/Lebel 3.mp3")
         pygame.mixer.music.play(2)
 
+        #------------------------------------------------------------------------------------------------------
+        # DRAW ELEMENTS ON WINDOW
+        #------------------------------------------------------------------------------------------------------
+        # PUNTUATION
+        def draw_punctuation(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+        
+        # TIME TRASNCURRED
+        def draw_time(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+        # PLAYER'S LIFE
+        def draw_player_life(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+
+        # PLAYER'S NAME
+        def PlayerName(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
 
         class Jugador(pygame.sprite.Sprite):
             def __init__(self):
@@ -718,6 +781,7 @@ def StartingWindow():
 
         #ALMACENAR AL JUGADOR
         all_sprites= pygame.sprite.Group()  
+        enemies_sprites = pygame.sprite.Group() 
 
         pez=Jugador()
         all_sprites.add(pez)
@@ -743,21 +807,72 @@ def StartingWindow():
         tiburon7=Tiburon1()
         all_sprites.add(tiburon7)
 
+        # TIME TRANSCURRED
+        Time = 0
+        # PUNCTUATION
+        Punctuation = 0
+        # PLAYER'S LIFE
+        PlayerLife = 3
+
+
         #PARA PODER CERRAR LA VENTANA AL PRESIONAR LA "X"
-        done=False
-        while not done:
+        done=True
+        start_time = time.time()
+
+        while done:
+            
+            actual_time = time.time() - start_time
+            Punctuation = actual_time
+            clock.tick(60)
+
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
-                    done=True
+                    done=False
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        done=True
+                        done=False 
                         pygame.quit()
                         StartingWindow()
                 
             screen.blit(fondo,[0,0])
             all_sprites.update()
+            enemies_sprites.update()
+
+
+            # COLISIONES
+            collides = pygame.sprite.spritecollide(pez,enemies_sprites,True)
+
+            if collides:
+                PlayerLife -= 1
+
+            # IF PLAYER'S LIFE IS 0 THE GAME ENDS
+            if PlayerLife == 0:
+                done = False
+                pygame.quit()
+                StartingWindow()
+
+            if int(actual_time) == 10:
+            
+                #MEJORESPUNTAJES()
+                pass
+
+            #PARA QUE SALGAN EN PANTALLA
+            all_sprites.draw(screen) 
+            enemies_sprites.draw(screen)
+
+            # DRAW THE PUNTUATION ON THE SCREEN
+            draw_punctuation(screen, "Puntuación: {}".format(str(int(Punctuation))), 25, 100, 650)
+
+            # DRAW THE TIME ON THE SCREEN
+            draw_time(screen, "Tiempo: {}".format(str(int(actual_time))),25, 300, 650)
+
+            # DRAW THE PLAYER'S LIFE SCORE ON THE SCREEN
+            draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
+
+            # DRAW THE PLAYER'S NAME ON THE SCREEN
+            PlayerName(screen,Playername,25, 750, 650)
+
 
             #PARA QUE SALGAN EN PANTALLA
             all_sprites.draw(screen) 
@@ -767,6 +882,25 @@ def StartingWindow():
             clock.tick(60)
 
         pygame.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # BUTTON "EMPEZAR"
     StartButton = Button(window, text = "Empezar", height = 1, width = 10, command = Level1, font = ("Ebrima",17))
