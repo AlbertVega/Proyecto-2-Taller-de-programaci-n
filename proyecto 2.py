@@ -1,5 +1,3 @@
-
-from os import name
 from tkinter import *
 import pygame, random
 import time
@@ -38,9 +36,7 @@ def StartingWindow():
     text_box.place(x = 355, y = 450, height = 30, width = 200)
 
     # ADD MUSIC 
-    
-    
-                       
+                   
     #-------------------------------------------------------------------
     #                        LEVEL 1
     #-------------------------------------------------------------------
@@ -49,11 +45,12 @@ def StartingWindow():
         global Playername
 
         # GET THE NAME INTRODUCED
-        
+        if Playername is None:
+            Playername = text_box.get()
         
         # CLOSE THE STARTING WINDOW
-        window.destroy()
-        Tk.quit
+            window.destroy()
+        
 
         # OPEN THE GAME WINDOW 
         pygame.init()
@@ -260,11 +257,10 @@ def StartingWindow():
         start_time = time.time()
 
         while done:
-            # Time = pygame.time.get_ticks()/1000
             actual_time = time.time() - start_time
-
             Punctuation = actual_time
             clock.tick(60)
+
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     done = False
@@ -272,6 +268,7 @@ def StartingWindow():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False
+                        Playername = None
                         pygame.quit()
                         StartingWindow()
                 
@@ -288,10 +285,12 @@ def StartingWindow():
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
+                Playername = None
                 pygame.quit()
                 StartingWindow()
-
-            if int(actual_time) == 20:
+                
+            
+            if int(actual_time) == 60:
                 Level2()
 
             #PARA QUE SALGAN EN PANTALLA
@@ -308,7 +307,7 @@ def StartingWindow():
             draw_player_life(screen, "Vida: {}".format(PlayerLife),25, 450, 650)
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
-            PlayerName(screen,name,25, 750, 650)
+            PlayerName(screen,Playername,25, 750, 650)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
@@ -326,7 +325,11 @@ def StartingWindow():
         # GET THE NAME INTRODUCED
         if Playername is None:
             Playername = text_box.get() 
-
+        
+        # CLOSE THE STARTING WINDOW
+        
+            window.destroy()
+        
         # OPEN THE GAME WINDOW 
         pygame.init()
         pygame.mixer.init() 
@@ -447,9 +450,9 @@ def StartingWindow():
                 self.rect.x = random.randrange(WIDTH) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(3,5)   
+                self.speed_x = random.randrange(2,3)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(3,5)
+                self.speed_y = random.randrange(2,3)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -478,9 +481,9 @@ def StartingWindow():
                 self.rect.x = random.randrange(WIDTH) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(3,5)   
+                self.speed_x = random.randrange(2,3)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(3,5)
+                self.speed_y = random.randrange(2,3)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -534,10 +537,9 @@ def StartingWindow():
 
         start_time = time.time()
 
-        while done:
-    
+        while done:   
             actual_time = time.time() - start_time
-            Punctuation = actual_time
+            Punctuation = int(actual_time) * 3
             clock.tick(60)
 
             for event in pygame.event.get():
@@ -547,6 +549,7 @@ def StartingWindow():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False
+                        Playername = None
                         pygame.quit()
                         StartingWindow()
                 
@@ -563,10 +566,11 @@ def StartingWindow():
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
+                Playername = None
                 pygame.quit()
                 StartingWindow()
 
-            if int(actual_time) == 10:
+            if int(actual_time) == 60:
             
                 Level3()
 
@@ -604,9 +608,10 @@ def StartingWindow():
         # GET THE NAME INTRODUCED
         if Playername is None:
             Playername = text_box.get() 
-
+        
         # CLOSE THE STARTING WINDOW
-        window.destroy()
+            window.destroy()
+        
 
         # OPEN THE GAME WINDOW 
         pygame.init()
@@ -615,7 +620,7 @@ def StartingWindow():
         #TAMAÑO DE LA VENTANA
         WIDTH= 900
         HEIGHT= 700
-        WHITE = (255,255,255)
+        WHITE = (0,0,0)
 
         #CREAR UNA VENTANA
         screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -727,9 +732,9 @@ def StartingWindow():
                 self.rect.x = random.randrange(WIDTH) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(3,5)   
+                self.speed_x = random.randrange(2,3)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(3,5)
+                self.speed_y = random.randrange(2,3)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -758,9 +763,9 @@ def StartingWindow():
                 self.rect.x = random.randrange(WIDTH) 
                 # VELOCIDAD CON LA QUE SE MOVERA 
                 self.rect.y = 100
-                self.speed_x = random.randrange(3,5)   
+                self.speed_x = random.randrange(2,3)   
                 # VELOCIDAD CON LA QUE SE MOVERA (SERA UNA DIFERENTE PARA CADA UNO)
-                self.speed_y = random.randrange(3,5)
+                self.speed_y = random.randrange(2,3)
             
             def update(self):
                 # ACTUALIZAR LA VELOCIDAD DEL ENEMIGO
@@ -787,28 +792,26 @@ def StartingWindow():
         all_sprites.add(pez)
 
         tiburon1=Tiburon1()
-        all_sprites.add(tiburon1)
+        enemies_sprites.add(tiburon1)
 
         tiburon2=Tiburon2()
-        all_sprites.add(tiburon2)
+        enemies_sprites.add(tiburon2)
 
         tiburon3=Tiburon1()
-        all_sprites.add(tiburon3)
+        enemies_sprites.add(tiburon3)
 
         tiburon4=Tiburon2()
-        all_sprites.add(tiburon4)
+        enemies_sprites.add(tiburon4)
 
         tiburon5=Tiburon1()
-        all_sprites.add(tiburon5)
+        enemies_sprites.add(tiburon5)
         
         tiburon6=Tiburon2()
-        all_sprites.add(tiburon6)
+        enemies_sprites.add(tiburon6)
 
         tiburon7=Tiburon1()
-        all_sprites.add(tiburon7)
+        enemies_sprites.add(tiburon7)
 
-        # TIME TRANSCURRED
-        Time = 0
         # PUNCTUATION
         Punctuation = 0
         # PLAYER'S LIFE
@@ -819,19 +822,19 @@ def StartingWindow():
         done=True
         start_time = time.time()
 
-        while done:
-            
+        while done:           
             actual_time = time.time() - start_time
-            Punctuation = actual_time
+            Punctuation = int(actual_time) * 5
             clock.tick(60)
 
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
-                    done=False
+                    done = False
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        done=False 
+                        done = False 
+                        Playername = None
                         pygame.quit()
                         StartingWindow()
                 
@@ -849,10 +852,11 @@ def StartingWindow():
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
+                Playername = None
                 pygame.quit()
                 StartingWindow()
 
-            if int(actual_time) == 10:
+            if int(actual_time) == 60:
             
                 #MEJORESPUNTAJES()
                 pass
@@ -872,34 +876,12 @@ def StartingWindow():
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
             PlayerName(screen,Playername,25, 750, 650)
-
-
-            #PARA QUE SALGAN EN PANTALLA
-            all_sprites.draw(screen) 
         
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
-            clock.tick(60)
+            
 
         pygame.quit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     # BUTTON "EMPEZAR"
