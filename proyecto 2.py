@@ -171,7 +171,8 @@ def StartingWindow():
                     self.rect.bottom = HEIGHT
                 if self.rect.top < 0:
                     self.rect.top = 0
-
+                     
+                     
 
         class Tiburon1(pygame.sprite.Sprite):
             def __init__(self):
@@ -255,7 +256,7 @@ def StartingWindow():
                     self.speed_y +=1
                     golpe=pygame.mixer.Sound("PNG/golpe.mp3")
                     golpe.play()
-
+                          
         #ALMACENAR AL JUGADOR
         all_sprites= pygame.sprite.Group()
 
@@ -308,7 +309,7 @@ def StartingWindow():
             all_sprites.update()
             enemies_sprites.update()
 
-            # COLISIONES
+            #COLISIONES
             collides = pygame.sprite.spritecollide(pez,enemies_sprites,True)
 
             if collides:
