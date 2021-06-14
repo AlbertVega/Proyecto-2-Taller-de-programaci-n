@@ -3,6 +3,8 @@ from tkinter import *
 import pygame, random
 import time
 
+from pygame import Rect, rect
+
 #GLOBAL VARIABLE
 Playername = None
 
@@ -122,6 +124,15 @@ def StartingWindow():
             text_rect.midtop = (x, y)
             surface.blit(text_surface, text_rect)
 
+        def ExitButton(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+        
+        rectangulo = pygame.Rect(15,10,80,50)
+            
 
         class Jugador(pygame.sprite.Sprite):
             def __init__(self):
@@ -196,24 +207,31 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
    
-
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
 
@@ -238,23 +256,31 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
                           
         #ALMACENAR AL JUGADOR
@@ -277,8 +303,7 @@ def StartingWindow():
         tiburon4=Tiburon2()
         enemies_sprites.add(tiburon4)
 
-        # TIME TRANSCURRED
-        Time = 0
+    
         # PUNCTUATION
         Punctuation = 0
         # PLAYER'S LIFE
@@ -297,6 +322,12 @@ def StartingWindow():
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     done = False
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                        done = False
+                        Playername = None
+                        pygame.quit()
+                        StartingWindow()
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
@@ -304,7 +335,9 @@ def StartingWindow():
                         Playername = None
                         pygame.quit()
                         StartingWindow()
-                
+                    
+
+   
             screen.blit(fondo,[0,0])
             all_sprites.update()
             enemies_sprites.update()
@@ -342,6 +375,15 @@ def StartingWindow():
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
             PlayerName(screen,Playername,25, 750, 650)
+
+            if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                pygame.draw.rect(screen,(235, 52, 52),rectangulo,0)
+
+            else:
+                pygame.draw.rect(screen,(255,255,255),rectangulo,0)
+
+            # DRAW THE EXIT BUTTON ON THE SCREEN
+            ExitButton(screen,"Salir", 25, 55,20)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
@@ -425,6 +467,15 @@ def StartingWindow():
             text_rect.midtop = (x, y)
             surface.blit(text_surface, text_rect)
 
+        def ExitButton(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+
+        rectangulo = pygame.Rect(15,10,80,50)
+
         class Jugador(pygame.sprite.Sprite):
             def __init__(self):
                 super().__init__()
@@ -497,21 +548,30 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
+
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
 
@@ -536,21 +596,30 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
+                    
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
         #ALMACENAR AL JUGADOR
@@ -597,6 +666,13 @@ def StartingWindow():
                 if event.type==pygame.QUIT:
                     done = False
 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                        done = False
+                        Playername = None
+                        pygame.quit()
+                        StartingWindow()
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False
@@ -640,6 +716,15 @@ def StartingWindow():
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
             PlayerName(screen,Playername,25, 750, 650)
+
+            if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                pygame.draw.rect(screen,(235, 52, 52),rectangulo,0)
+
+            else:
+                pygame.draw.rect(screen,(255,255,255),rectangulo,0)
+
+            # DRAW THE EXIT BUTTON ON THE SCREEN
+            ExitButton(screen,"Salir", 25, 55,20)
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
@@ -724,6 +809,15 @@ def StartingWindow():
             text_rect.midtop = (x, y)
             surface.blit(text_surface, text_rect)
 
+        def ExitButton(surface, text, size, x, y):
+            font = pygame.font.SysFont("serif",size)
+            text_surface = font.render(text, True, WHITE)
+            text_rect = text_surface.get_rect()
+            text_rect.midtop = (x, y)
+            surface.blit(text_surface, text_rect)
+        
+        rectangulo = pygame.Rect(15,10,80,50)
+
         class Jugador(pygame.sprite.Sprite):
             def __init__(self):
                 super().__init__()
@@ -796,21 +890,31 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1  #PARA QUE REBOTE
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
+
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
+                    
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
 
@@ -835,22 +939,31 @@ def StartingWindow():
                 # LIMITA EL MARGEN DERECHO E IZQUIERDO
                 if self.rect.right > WIDTH:
                     self.speed_x -=1 #PARA QUE REBOTE   
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.right == WIDTH:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 if self.rect.left < 0:
                     self.speed_x +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+                    
+                if self.rect.left == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
                 # LIMITA EL MARGEN INFERIOR Y SUPERIOR
                 if self.rect.bottom > HEIGHT:
                     self.speed_y -=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.bottom == HEIGHT:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
+
                 if self.rect.top < 0:
                     self.speed_y +=1
-                    golpe=pygame.mixer.Sound("PNG/golpe.mp3")
+
+                if self.rect.top == 0:
+                    golpe=pygame.mixer.Sound("PNG/golpe1.mp3")
                     golpe.play()
 
         #ALMACENAR AL JUGADOR
@@ -899,6 +1012,12 @@ def StartingWindow():
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     done = False
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                        done = False
+                        Playername = None
+                        pygame.quit()
+                        StartingWindow()
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
@@ -945,6 +1064,15 @@ def StartingWindow():
 
             # DRAW THE PLAYER'S NAME ON THE SCREEN
             PlayerName(screen,Playername,25, 750, 650)
+
+            if rectangulo.collidepoint(pygame.mouse.get_pos()):
+                pygame.draw.rect(screen,(235, 52, 52),rectangulo,0)
+
+            else:
+                pygame.draw.rect(screen,(255,255,255),rectangulo,0)
+
+            # DRAW THE EXIT BUTTON ON THE SCREEN
+            ExitButton(screen,"Salir", 25, 55,20)
         
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
