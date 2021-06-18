@@ -1,12 +1,15 @@
-
 from tkinter import *
 import pygame, random
 import time
-
+from io import open 
 from pygame import Rect, rect
 
 #GLOBAL VARIABLE
-Playername = None
+Playername = "0"
+puntuacion1 = 0
+puntuacion2 = 0
+puntuacion3 = 0
+puntuacionglobal = 0
 
 
 def StartingWindow():
@@ -52,10 +55,13 @@ def StartingWindow():
                            
     def Level1():
         global Playername
-
+        global puntuacion1
+        global puntuacion2
+        global puntuacion3
+        global puntuacionglobal
         # GET THE NAME INTRODUCED
-        if Playername is None:
-            Playername = text_box.get()
+        if Playername == "0":
+            Playername = " " + text_box.get()
         
         # CLOSE THE STARTING WINDOW
             window.destroy()
@@ -306,6 +312,8 @@ def StartingWindow():
     
         # PUNCTUATION
         Punctuation = 0
+         
+
         # PLAYER'S LIFE
         PlayerLife = 3
 
@@ -316,7 +324,8 @@ def StartingWindow():
 
         while done:
             actual_time = time.time() - start_time
-            Punctuation = actual_time
+            puntuacion1 = Punctuation
+            Punctuation = int(actual_time)
             clock.tick(60)
 
             for event in pygame.event.get():
@@ -325,14 +334,14 @@ def StartingWindow():
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if rectangulo.collidepoint(pygame.mouse.get_pos()):
                         done = False
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
                     
@@ -347,18 +356,23 @@ def StartingWindow():
 
             if collides:
                 PlayerLife -= 1
-                
+                puntuacionglobal -= 1
 
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
-                Playername = None
+                Playername = "0"
+                puntuacion1 = 0
+                puntuacion2 = 0
+                puntuacion3 = 0
                 pygame.quit()
                 StartingWindow()
                 
             
-            if int(actual_time) == 60:
+            if int(actual_time) == 10:
+                pygame.quit()
                 Level2()
+        
 
             #PARA QUE SALGAN EN PANTALLA
             all_sprites.draw(screen) 
@@ -387,7 +401,8 @@ def StartingWindow():
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
-            
+
+         
 
         pygame.quit()
 
@@ -397,10 +412,13 @@ def StartingWindow():
 
     def Level2():
         global Playername
-
+        global puntuacion1
+        global puntuacion2
+        global puntuacion3
+        global puntuacionglobal
         # GET THE NAME INTRODUCED
-        if Playername is None:
-            Playername = text_box.get() 
+        if Playername == "0":
+            Playername = " " + text_box.get() 
         
         # CLOSE THE STARTING WINDOW
         
@@ -645,10 +663,9 @@ def StartingWindow():
         tiburon5=Tiburon1()
         enemies_sprites.add(tiburon5)
 
-        # TIME TRANSCURRED
-        Time = 0
         # PUNCTUATION
-        Punctuation = 0
+        Punctuation = 0      
+
         # PLAYER'S LIFE
         PlayerLife = 3
 
@@ -659,7 +676,8 @@ def StartingWindow():
 
         while done:   
             actual_time = time.time() - start_time
-            Punctuation = int(actual_time) * 3
+            puntuacion2 = Punctuation
+            Punctuation = int(actual_time) * 3            
             clock.tick(60)
 
             for event in pygame.event.get():
@@ -669,14 +687,14 @@ def StartingWindow():
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if rectangulo.collidepoint(pygame.mouse.get_pos()):
                         done = False
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
                 
@@ -689,16 +707,19 @@ def StartingWindow():
 
             if collides:
                 PlayerLife -= 1
-
+                puntuacionglobal -= 3
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
-                Playername = None
+                Playername = "0"
+                puntuacion1 = 0
+                puntuacion2 = 0
+                puntuacion3 = 0
                 pygame.quit()
                 StartingWindow()
 
-            if int(actual_time) == 60:
-            
+            if int(actual_time) == 10:
+                pygame.quit()
                 Level3()
 
             #PARA QUE SALGAN EN PANTALLA
@@ -728,7 +749,8 @@ def StartingWindow():
 
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
-            
+
+         
 
         pygame.quit()
 
@@ -739,11 +761,13 @@ def StartingWindow():
 
     def Level3():
         global Playername
-
-       
+        global puntuacion1
+        global puntuacion2
+        global puntuacion3
+        global puntuacionglobal
         # GET THE NAME INTRODUCED
-        if Playername is None:
-            Playername = text_box.get() 
+        if Playername == "0":
+            Playername = " " + text_box.get() 
         
         # CLOSE THE STARTING WINDOW
             window.destroy()
@@ -996,6 +1020,7 @@ def StartingWindow():
 
         # PUNCTUATION
         Punctuation = 0
+        
         # PLAYER'S LIFE
         PlayerLife = 3
 
@@ -1006,7 +1031,8 @@ def StartingWindow():
 
         while done:           
             actual_time = time.time() - start_time
-            Punctuation = int(actual_time) * 5
+            puntuacion3 = Punctuation
+            Punctuation = int(actual_time) * 5 
             clock.tick(60)
 
             for event in pygame.event.get():
@@ -1015,14 +1041,14 @@ def StartingWindow():
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if rectangulo.collidepoint(pygame.mouse.get_pos()):
                         done = False
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         done = False 
-                        Playername = None
+                        Playername = "0"
                         pygame.quit()
                         StartingWindow()
                 
@@ -1036,18 +1062,21 @@ def StartingWindow():
 
             if collides:
                 PlayerLife -= 1
+                puntuacionglobal -= 5
 
             # IF PLAYER'S LIFE IS 0 THE GAME ENDS
             if PlayerLife == 0:
                 done = False
-                Playername = None
+                Playername = "0"
+                puntuacion1 = 0
+                puntuacion2 = 0
+                puntuacion3 = 0
                 pygame.quit()
                 StartingWindow()
 
-            if int(actual_time) == 60:
-            
-                #MEJORESPUNTAJES()
-                pass
+            if int(actual_time) == 10:
+                pygame.quit()
+                StartingWindow()
 
             #PARA QUE SALGAN EN PANTALLA
             all_sprites.draw(screen) 
@@ -1076,8 +1105,7 @@ def StartingWindow():
         
         #PARA ACTUALIZAR LA PANTALLA
             pygame.display.flip()
-            
-
+         
         pygame.quit()
 
 
@@ -1148,10 +1176,110 @@ def StartingWindow():
 
         mainloop()
 
+    def BestScores():
 
+        global Playername
+        global puntuacion1
+        global puntuacion2
+        global puntuacion3
+        global puntuacionglobal
+
+        Bestscores = Toplevel()
+        Bestscores.title("The Fish Adventure")
+
+        image = PhotoImage(file = "PNG/Best_scores_background.png")
+        background = Label(Bestscores, image = image)
+        background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
+
+        # WINDOW DIMENTIONS
+        Bestscores.geometry("900x700")
+
+        archivo = open("mejorespuntajes.txt","r+")
+
+        puntuaciones = []
+
+        for line in archivo:
+            puntuaciones.append(line)
+
+        puntuacionglobal += puntuacion1 + puntuacion2 + puntuacion3
+
+        puntuaciones.append(str(puntuacionglobal) + Playername + "\n")
+
+        def quick_sort(lista):
+            quick_sort_auxiliar(lista, 0, len(lista) - 1)
+
+        def quick_sort_auxiliar(lista, inicio, fin):
+            if inicio < fin:
+                punto_particion = particionar(lista, inicio, fin)
+
+                quick_sort_auxiliar(lista, inicio, punto_particion - 1)
+                quick_sort_auxiliar(lista, punto_particion + 1, fin)
+
+        def particionar(lista, inicio, fin):
+            pivote = lista[inicio]
+
+            izquierda = inicio + 1
+            derecha = fin
+            terminado = False
+
+            while not terminado:
+                while izquierda <= derecha and lista[izquierda] <= pivote:
+                    izquierda += 1
+
+                while lista[derecha] >= pivote and derecha >= izquierda:
+                    derecha -= 1
+
+                if derecha < izquierda:
+                    terminado = True
+                else:
+                    lista[izquierda], lista[derecha] = lista[derecha], lista[izquierda]
+
+            lista[inicio], lista[derecha] = lista[derecha], lista[inicio]
+
+            return derecha
+
+        quick_sort(puntuaciones)
+
+        puntuaciones.reverse()
+
+        archivo.seek(0)
+
+        archivo.writelines(puntuaciones) 
+
+        print(puntuaciones)
+
+        archivo.close()
+
+        player1= Label(Bestscores, text=puntuaciones[0], font=("Ebrima",20))
+        player1.place(x = 420, y = 250)
+
+        player2= Label(Bestscores, text=puntuaciones[1], font=("Ebrima",20))
+        player2.place(x = 420, y = 300)
+
+        player3= Label(Bestscores, text=puntuaciones[2], font=("Ebrima",20))
+        player3.place(x = 420, y = 350)
+
+        player4= Label(Bestscores, text=puntuaciones[3], font=("Ebrima",20))
+        player4.place(x = 420, y = 400)
+
+        player5= Label(Bestscores, text=puntuaciones[4], font=("Ebrima",20))
+        player5.place(x = 420, y = 450)
+
+        player6= Label(Bestscores, text=puntuaciones[5], font=("Ebrima",20))
+        player6.place(x = 420, y = 500)
+
+        player7= Label(Bestscores, text=puntuaciones[6], font=("Ebrima",20))
+        player7.place(x = 420, y = 550)
+
+        mainloop()
+        
     # ABOUT BUTTON
     AboutButton = Button(window, text = "About", command = AboutWindow, font = ("Ebrima 15"))
     AboutButton.place(x = 100, y = 315)
+
+    # BEST SOCORES'S BUTTON
+    BestScoresButton = Button(window, text = "Puntajes", command = BestScores, font = ("Ebrima 17"))
+    BestScoresButton.place(x = 83, y = 500)
 
     mainloop()
 
