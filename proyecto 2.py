@@ -1,3 +1,4 @@
+
 from tkinter import *
 import pygame, random
 import time
@@ -765,6 +766,7 @@ def StartingWindow():
         global puntuacion2
         global puntuacion3
         global puntuacionglobal
+
         # GET THE NAME INTRODUCED
         if Playername == "0":
             Playername = " " + text_box.get() 
@@ -1183,6 +1185,11 @@ def StartingWindow():
         global puntuacion2
         global puntuacion3
         global puntuacionglobal
+
+        #SONIDO
+        pygame.mixer.init() 
+        pygame.mixer.music.load("PNG/Scores.mp3")
+        pygame.mixer.music.play(1)
 
         Bestscores = Toplevel()
         Bestscores.title("The Fish Adventure")
